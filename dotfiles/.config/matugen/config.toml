@@ -2,16 +2,16 @@
 # ...
 
 [templates.hyprland]
-input_path = '~/.config/matugen/templates/hyprland-colors.conf'
-output_path = '~/.config/hypr/colors.conf'
+input_path = '~/Projects/myhyprland-rice/dotfiles/.config/matugen/templates/hyprland-colors.conf'
+output_path = '~/Projects/myhyprland-rice/dotfiles/.config/hypr/colors.conf'
 post_hook = 'hyprctl reload'
 
 [templates.waybar]
-input_path = '~/.config/matugen/templates/colors.css'
-output_path = '~/.config/waybar/colors.css'
+input_path = '~/Projects/myhyprland-rice/dotfiles/.config/matugen/templates/colors.css'
+output_path = '~/Projects/myhyprland-rice/dotfiles/.config/waybar/colors.css'
 post_hook = 'pkill -SIGUSR2 waybar'
 
 [templates.kitty]
-input_path = '~/.config/matugen/templates/kitty-colors.conf'
-output_path = '~/.config/kitty/colors.conf'
+input_path = '~/Projects/myhyprland-rice/dotfiles/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/Projects/myhyprland-rice/dotfiles/.config/kitty/colors.conf'
 post_hook = 'pkill -SIGUSR1 kitty'
