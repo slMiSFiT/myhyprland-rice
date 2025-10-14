@@ -32,3 +32,7 @@ output_path = '~/Projects/myhyprland-rice/dotfiles/.config/qt5ct/colors/matugen.
 [templates.qt6ct]
 input_path = '~/Projects/myhyprland-rice/dotfiles/.config/matugen/templates/qtct-colors.conf'
 output_path = '~/Projects/myhyprland-rice/dotfiles/.config/qt6ct/colors/matugen.conf'
+
+[templates.color-scheme]
+input_path = '~/Projects/myhyprland-rice/dotfiles/.config/matugen/templates/Matugen.colors'
+output_path = '~/.local/share/color-schemes/Matugen.colors'
