@@ -68,7 +68,7 @@ fi
 #  6. Apply dotfiles using stow
 # ----------------------------
 echo ">>> Creating symlinks with stow..."
-stow -d "$RICE_DIR" -t "$HOME" /dotfiles || echo ">>> Some links may already exist."
+stow -d "$RICE_DIR" -t "$HOME" dotfiles || echo ">>> Some links may already exist."
 
 # ----------------------------
 #  7. Final touches
