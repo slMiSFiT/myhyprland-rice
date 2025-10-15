@@ -49,7 +49,6 @@ networkmanager
 noto-fonts
 nwg-look
 paru
-paru-debug
 pipewire
 pipewire-alsa
 pipewire-jack
