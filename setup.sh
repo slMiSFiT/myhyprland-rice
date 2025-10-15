@@ -8,16 +8,15 @@ set -euo pipefail  # Exit on error, unset variable, or failed pipe
 # ----------------------------
 info() { echo -e "\e[34m>>> $1\e[0m"; }
 warn() { echo -e "\e[33m>> $1\e[0m"; }
-needed() { echo -e "\e[32m> $1\e[0m"; }
+suggested() { echo -e "\e[32m> $1\e[0m"; }
 error() { echo -e "\e[31m $1\e[0m"; exit 1; }
 
 # ----------------------------
-#  0. Configure pacman
+#  Configure pacman
 # ----------------------------
 info "Configuring pacman..."
-
 PACMAN_CONF="/etc/pacman.conf"
-# Enable some Misc options
+# Enable visual and safety options
 sudo sed -i \
     -e 's/^#Color/Color/' \
     -e 's/^#CheckSpace/CheckSpace/' \
@@ -28,10 +27,13 @@ sudo sed -i \
 if ! grep -q '^ILoveCandy' "$PACMAN_CONF"; then
     sudo sed -i '/Color/a ILoveCandy' "$PACMAN_CONF"
 fi
-# Enable multilib if not already
-if ! grep -q '^\[multilib\]' /etc/pacman.conf; then
-    sudo sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf         # Uncomment [multilib] line
-    sudo sed -i '/#Include = \/etc\/pacman.d\/mirrorlist/s/^#//' /etc/pacman.conf  # Uncomment the Include line below it
+# Enable only the [multilib] repo
+if ! grep -q '^\[multilib\]' "$PACMAN_CONF"; then
+    sudo sed -i '/#\[multilib\]/s/^#//' "$PACMAN_CONF"
+    # Uncomment only the Include line directly after [multilib]
+    sudo awk '
+        /^\[multilib\]/ {print; getline; sub(/^#/, "", $0)} {print}
+    ' "$PACMAN_CONF" | sudo tee "$PACMAN_CONF.tmp" >/dev/null && sudo mv "$PACMAN_CONF.tmp" "$PACMAN_CONF"
 fi
 
 # ----------------------------
@@ -120,11 +122,11 @@ fi
 # ----------------------------
 info "Enabling essential services..."
 sudo systemctl enable --now NetworkManager
-sudo systemctl enable --now reflector.service
-# needed "configure /etc/xdg/reflector/reflector.conf"
+#sudo systemctl enable --now reflector.service
+suggested "configure /etc/xdg/reflector/reflector.conf" # --country Morocco,Germany --protocol https --age 12 --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 # add other services (sddm,paccache,...)"
 
 # ----------------------------
 # Done
 # ----------------------------
-info "Setup complete! fulfill the needed configs (>) and Reboot your system to start using it."
+info "Setup complete! fulfill > suggestions and Reboot your system to start using it."

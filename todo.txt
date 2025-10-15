@@ -2,9 +2,8 @@
 #     TO DO LIST
 # ============================
 
-# update mirrorlist
-# configure pacman
-# enable services
+# enable essential services
 # configure firefox/brave
 # replace wofi with rofi-wayland
-# theme change(matugen, reload ui, etc...) on wallpaper change
+# complete matugen config (yazi, starship,rofi,...)
+# theme change(wallpaper, matugen, reload ui, etc...)
