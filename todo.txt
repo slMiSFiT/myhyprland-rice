@@ -1,0 +1,10 @@
+# ============================
+#     TO DO LIST
+# ============================
+
+# update mirrorlist
+# configure pacman
+# enable services
+# configure firefox/brave
+# replace wofi with rofi-wayland
+# theme change(matugen, reload ui, etc...) on wallpaper change

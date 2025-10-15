@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# ============================
-#  Arch Linux Rebuild Script
-# ============================
 
 set -e  # Exit immediately on error
 
@@ -13,21 +10,11 @@ sudo pacman -Syu --noconfirm
 #  1. Install base packages
 # ----------------------------
 echo ">>> Installing base packages..."
-sudo pacman -S --needed --noconfirm \
+sudo pacman -S --needed \
     git base-devel curl wget neovim zsh htop unzip stow
 
 # ----------------------------
-#  2. Restore package list
-# ----------------------------
-if [ -f pkglist.txt ]; then
-    echo ">>> Installing packages from pkglist.txt..."
-    sudo pacman -S --needed - < pkglist.txt
-else
-    echo ">>> No pkglist.txt found, skipping."
-fi
-
-# ----------------------------
-#  3. Install paru (AUR helper)
+#  2. Install paru (AUR helper)
 # ----------------------------
 if ! command -v paru &> /dev/null; then
     echo ">>> Installing paru (AUR helper)..."
@@ -38,17 +25,7 @@ if ! command -v paru &> /dev/null; then
 fi
 
 # ----------------------------
-#  4. Restore AUR packages
-# ----------------------------
-if [ -f aurlist.txt ]; then
-    echo ">>> Installing AUR packages from aurlist.txt..."
-    paru -S --needed - < aurlist.txt
-else
-    echo ">>> No aurlist.txt found, skipping."
-fi
-
-# ----------------------------
-#  5. Clone Hyprland rice repo
+#  3. Clone Hyprland rice repo
 # ----------------------------
 PROJECTS_DIR="$HOME/Projects"
 RICE_DIR="$PROJECTS_DIR/myhyprland-rice"
@@ -65,17 +42,29 @@ else
 fi
 
 # ----------------------------
-#  6. Apply dotfiles using stow
+#  4. Restore package list
+# ----------------------------
+cd "$RICE_DIR"
+if [ -f pkglist.txt ]; then
+    echo ">>> Installing packages from pkglist.txt..."
+    sudo paru -S --needed - < pkglist.txt
+else
+    echo ">>> No pkglist.txt found, skipping."
+fi
+
+
+# ----------------------------
+#  5. Apply dotfiles using stow
 # ----------------------------
 echo ">>> Creating symlinks with stow..."
 stow -d "$RICE_DIR" -t "$HOME" dotfiles || echo ">>> Some links may already exist."
 
 # ----------------------------
-#  7. Final touches
+#  6. Set zsh the default shell
 # ----------------------------
 echo ">>> Setting zsh as default shell..."
-su
 chsh -s "$(which zsh)"
-exit
 
+# Done.
 echo ">>> Setup complete! Log out and back in to enjoy your Hyprland rice."
+
