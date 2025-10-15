@@ -2,8 +2,11 @@
 #     TO DO LIST
 # ============================
 
+# add privacy and security (ufw, luks,...)
+# keybind to lock and turn off screen & fix hypridle keyboard light
 # enable essential services
 # configure firefox/brave
 # replace wofi with rofi-wayland
 # complete matugen config (yazi, starship,rofi,...)
 # theme change(wallpaper, matugen, reload ui, etc...)
+# remove unused packages (themes,...)
