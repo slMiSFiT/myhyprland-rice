@@ -8,5 +8,5 @@
 # configure firefox/brave
 # replace wofi with rofi-wayland
 # complete matugen config (yazi, starship,rofi,...)
-# theme change(wallpaper, matugen, reload ui, etc...)
+# theme change(hyprpaper, hyprlock, matugen, reload ui, etc...)
 # remove unused packages (themes,...)
