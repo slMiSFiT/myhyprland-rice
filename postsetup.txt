@@ -32,3 +32,9 @@ Use full disk encryption (LUKS) from installation. If you skipped it, consider s
 # ----------------------------
 https://wiki.archlinux.org/title/Timeshift
 sudo timeshift --help
+
+# ----------------------------
+#  3. sddm theme 
+# ----------------------------
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
+source: https://github.com/Keyitdev/sddm-astronaut-theme

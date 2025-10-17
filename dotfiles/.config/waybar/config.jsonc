@@ -29,13 +29,13 @@
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
-    "format": "{name}: {icon}",
+    "format": "{icon}",
     "format-icons": {
       "1": "",
       "2": "",
       "3": "",
-      "4": "",
-      "5": "",
+      "4": "",
+      "5": "",
       "urgent": "",
       "focused": "",
       "default": ""
