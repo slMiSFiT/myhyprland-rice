@@ -122,6 +122,15 @@ fi
 # ----------------------------
 info "Enabling essential services..."
 sudo systemctl enable --now NetworkManager
+
+sudo pacman -S ufw
+sudo systemctl enable --now ufw
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+sh -c 'sh -c "$(curl -sL https://nextdns.io/install)"'
+nextdns start
+
 #sudo systemctl enable --now reflector.service
 suggested "configure /etc/xdg/reflector/reflector.conf" # --country Morocco,Germany --protocol https --age 12 --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 # add other services (sddm,paccache,...)"

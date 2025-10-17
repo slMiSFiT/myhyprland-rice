@@ -1,0 +1,34 @@
+# this must be done after the setup (relies on certain packages)
+
+# ----------------------------
+#  1. Mac randomasation
+# ----------------------------
+NetworkManager supports this out of the box. Enable it in /etc/NetworkManager/conf.d/mac.conf:
+
+[device]
+wifi.scan-rand-mac-address=yes
+
+[connection]
+wifi.cloned-mac-address=random
+ethernet.cloned-mac-address=random
+
+
+Then restart NetworkManager:
+
+sudo systemctl restart NetworkManager
+
+# ----------------------------
+#  2. Hardware / Firmware
+# ----------------------------
+Keep your firmware up to date via fwupd:
+
+sudo fwupdmgr refresh
+sudo fwupdmgr update
+
+Use full disk encryption (LUKS) from installation. If you skipped it, consider setting up encrypted partitions for sensitive data later.
+
+# ----------------------------
+#  2. restore 
+# ----------------------------
+https://wiki.archlinux.org/title/Timeshift
+sudo timeshift --help
