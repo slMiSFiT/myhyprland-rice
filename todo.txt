@@ -3,7 +3,7 @@
 # ============================
 
 # add privacy and security (ufw, luks,...)
-# keybind to lock and turn off screen & fix hypridle keyboard light
+# keybind to lock and turn off screen
 # enable essential services
 # configure firefox/brave
 # replace wofi with rofi-wayland

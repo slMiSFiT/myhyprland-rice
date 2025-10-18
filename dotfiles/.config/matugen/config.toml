@@ -28,3 +28,7 @@ output_path = '~/Projects/myhyprland-rice/dotfiles/.config/gtk-4.0/colors.css'
 [templates.color-scheme]
 input_path = '~/Projects/myhyprland-rice/dotfiles/.config/matugen/templates/Matugen.colors'
 output_path = '~/.local/share/color-schemes/Matugen.colors'
+
+[templates.rofi]
+input_path = '~/Projects/myhyprland-rice/dotfiles/.config/matugen/templates/rofi-colors.rasi'
+output_path = '~/Projects/myhyprland-rice/dotfiles/.config/rofi/colors.rasi'

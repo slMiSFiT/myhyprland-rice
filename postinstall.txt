@@ -1,0 +1,67 @@
+# this must be done manually before the setup.sh
+
+# ----------------------------
+#  Configure pacman
+# ----------------------------
+enable multilib, misc options(color, parallel download, I Love Candy)
+# ----------------------------
+#  Update mirrorlist
+# ----------------------------
+"configure /etc/xdg/reflector/reflector.conf" # --country Morocco,Germany --protocol https --age 12 --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+then run sudo systemctl enable --now reflector.service
+
+# ----------------------------
+#  Mac randomasation
+# ----------------------------
+
+sudo pacman -S NetworkManager
+
+NetworkManager supports this out of the box. Enable it in /etc/NetworkManager/conf.d/mac.conf:
+
+[device]
+wifi.scan-rand-mac-address=yes
+
+[connection]
+wifi.cloned-mac-address=random
+ethernet.cloned-mac-address=random
+
+
+Then restart NetworkManager:
+
+sudo systemctl restart NetworkManager
+
+# ----------------------------
+#  Firewall
+# ----------------------------
+sudo pacman -S ufw
+sudo systemctl enable --now ufw
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# ----------------------------
+#  2. Hardware / Firmware
+# ----------------------------
+Keep your firmware up to date via fwupd:
+
+sudo fwupdmgr refresh
+sudo fwupdmgr update
+
+Use full disk encryption (LUKS) from installation. If you skipped it, consider setting up encrypted partitions for sensitive data later.
+
+# ----------------------------
+#  DNS
+# ----------------------------
+sh -c 'sh -c "$(curl -sL https://nextdns.io/install)"'
+nextdns start
+
+# ----------------------------
+#  camera block and microphone
+# ----------------------------
+Enter Bios
+
+# ----------------------------
+#  backup & restore 
+# ----------------------------
+https://wiki.archlinux.org/title/Timeshift
+sudo timeshift --help
+
